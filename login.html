@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="login.css" />
+                <script type="text/javascript">
+            function changebackground(){
+                var current = new Date();
+                var change = current.getHours();
+                if(change >= 0 && change <= 12){
+                    var backgroundImage = document.getElementsByTagName("BODY")[0];
+                    backgroundImage.style.backgroundImage = " url(FotoG/prapavija.jpg)";
+                }else if(change >=13 && change <= 18 ){
+                    var backgroundImage = document.getElementsByTagName("BODY")[0];
+                    backgroundImage.style.backgroundImage = " url(FotoG/background.jpg)";
+                }else if(change >= 19 && change <= 24){
+                    var backgroundImage = document.getElementsByTagName("BODY")[0];
+                    backgroundImage.style.backgroundImage = " url(FotoG/prapavija.jpg)";
+                } 
+            }
+        </script>
+</head>
+<body>
+     <script type="text/javascript">
+        changebackground();
+    </script>
+	<div class="loginbox"> 
+		<img class= "loginfoto" src="FotoG/login.png" />
+			<form>
+				
+				 <h1>Login Here</h1>
+					<p>Username: </p>
+					<input type="text" name="Username" placeholder="Enter Username" required>
+					<p>Password:</p>
+					<input type="password" name="Password " placeholder="Enter Password" required>
+					<input type="submit" name="submit" value="Login" />
+					<a href="#">Forget Password</a>
+		
+			</form>
+	</div>
+	
+	
+</body>
+</html>

@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Children</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" type='text/css' href="children.css">
+         <script src="jquery-3.2.1.min.js"></script>
+        <script>
+            $(document).ready(function(){
+               $("#fotoSh").click(function(){
+                   $(".1_1").fadeToggle(1000);
+                   $("#right_right").fadeToggle(2000);
+               }); 
+                 $("#welcome").click(function(){
+                   $(this).hide(100);
+                   $(this).show(50);
+                }); 
+              $("#fun").hover(function(){
+                   $(this).slideToggle("fast");
+               });
+            });
+        </script>
+        <script>  
+        function funk(){
+             window.alert('Sorry but there is nothing to click!');
+        }
+        function funk2(){
+             window.alert('You just right-clicked!');
+        }
+        </script>
+    </head>
+    <body>
+        <header style="border-top: #666666 dotted 7px;">
+            <div id="firstdiv" align="center">
+                       <img src="foto/logo.jpg" width="80" height="80" align="left" id="logo" usemap="#map">
+		<map name="map">
+                        <area shape="rect" coords="29,21,38,34" alt="New Arrevals" href="menu.html" />
+                        <area shape="rect" coords="41,26,45,33" alt="Man" href="man.html" />
+                        <area shape="rect" coords="49,25,59,34" alt="Woman" href="femra.html" />
+                        <area shape="rect" coords="60,26,63,35" alt="Children" href="children.html" />
+                        <area shape="rect" coords="65,25,71,34" alt="Sport" href="sport.html" />
+                        <area shape="rect" coords="71,33,78,36" alt="General" href="general.html" />
+</map>		   		
+            <form style="text-align:right;" name="myForm" onsubmit="javascript:return validateForm('myForm' , 'clothes')" method="get" ><input id="search" type='text' placeholder=" Search..." list="fashion" name="clothes" maxlength="30" autocomplete="on" autofocus  title="Search just for clothes that are in the list,please!" ><datalist id="fashion">
+                    <option value="Woman Dresses"> 
+                    <option value="Woman T-shirts">
+                    <option value="Woman Sweaters">
+                    <option value="Man Pants">
+                    <option value="Man Shirts">
+                    <option value="Man Sweaters">
+                    <option value="Children Dresses">
+                    <option value="Children Jackets">
+                    <option value="Children Sweaters">
+                    <option value="Sport Jacket">
+                    <option value="Sport T-shirt">
+                  </datalist><input id="go" type="submit" formmethod="post" value="Go!"></form> 
+                 <script>
+                       function validateForm(myForm , clothes) {
+                           var reg = /^([A-Za-z\-]){1,}\s([A-Za-z0-9\-]){1,}$/;
+                           var x = document.forms[myForm].elements[clothes].value;
+                           if (reg.test(x) === false ||  x === "") {
+                                alert("Not a valid Search. Try another one!");
+                                document.forms[myForm].elements[clothes].focus;
+                                 document.forms[myForm].elements[clothes].focus();
+                                return false;
+                             }
+                          }
+                 </script>
+                  <p id="welcome">Welcome!</p>
+         
+            </div>
+            <div  id="divoftable" align="center">
+                <table>
+                    <tr>
+                        <td><a href="menu.html">New Arrivals</a></td>
+                        <td><a href="man.html">Men</a></td>
+                        <td><a href="femra.html">Woman</a></td>
+                        <td><strong><a href="children.html">Children</a></strong></td>
+                        <td><a href="sport.html">Sport</a></td>
+                        <td><a href="general.html">General</a></td>
+                    </tr>
+                </table>
+            </div>
+        </header>
+        <div id="main_content">
+             <div id="fun" style="text-align:center; width:100%;height: 1.5%; background-color:#48ad48; margin:0; border-top: solid 2px;">
+                <pre style="paddding-top:100px; color:white;">Life is too short to wear boring clothes!</pre>
+            </div>
+		<div class="shablloni" style=" -webkit-box-shadow:0 0 .5em rgb(4,6,5);">
+                    <div id="left">
+                        <img id="fotoSh" src="Foto/foto/KDRES.jpg" alt="Gjempert per femra " title="Dresses" />
+                    </div>
+                    <div id="right"  title="Nothing to click!" onclick="funk()" oncontextmenu="funk2()" style="text-transform:uppercase;">
+                        <div id="right_left">
+                        <h1 id="hi">Dresses</h1>
+                         <dl class="1_1">
+                             <dt><h2>Size</h2>
+                                <dl>
+                                    <dt><strong>S</strong></dt>
+                                    <dt><strong>M</strong></dt>
+                                    <dt><strong>L</strong></dt>
+                                    <dt><strong>XL</strong></dt>
+                                    <dt><strong>XXL</strong></dt>
+                                </dl>
+                            </dt>
+                         </dl>
+                       </div>
+                        <div id="right_right">
+                                <dl>
+                                    <dt><h2>Color</h2>
+                                        <dl>
+                                            <dt><strong>Red</strong></dt>
+                                            <dt><strong>Pink</strong></dt>
+                                            <dt><strong>Rose</strong></dt>
+                                            <dt><strong>Blue</strong></dt>
+                                            <dt><strong>Green</strong></dt>
+                                        </dl>
+                                    </dt>
+                                </dl>
+                        </div>
+                    </div>
+	        </div>
+                <div id="second_div">
+                    <div class="item_left">
+                        <img src="foto/foto/k1.jpg" title="$49.99"/>
+                        <q>Check Cotton Shirt</q> Dress
+                         <p style="padding-left:25px;color:white; font-style: italic;" title="Prise" >$49.99</p>
+                    </div>
+                <div class="item_left">
+                        <img src="foto/foto/k2.jpg" title="$55.99"/>
+                        <q>Contrasting Stripe Cotton Shirt</q> Dress
+                         <p style="padding-left:25px;color:white; font-style: italic;" title="Prise" >$55.99</p>
+                </div>
+                <div class="item_left">
+                        <img src="foto/foto/k3.jpg" title="$89.99"/>
+                        <q>Check Cotton</q> Dress
+                         <p style="padding-left:25px;color:white; font-style: italic;" title="Prise" >$89.99</p>
+                </div>
+                <div class="item_right">
+                        <img src="foto/foto/k4.jpg" title="$99.99"/>
+                        <Q>Check Stretch Cotton Trench</q> Dress
+                         <p style="padding-left:25px;color:white; font-style: italic;;" title="Prise" >$99.99</p>
+                </div>
+
+                </div>
+               <div class="shablloni" style=" -webkit-box-shadow:0 0 .5em rgb(4,6,5);">
+                    <div id="left">
+                        <img id="fotoSh" src="Foto/foto/JACKETS.jpg" alt="Gjempert per femra " title="Jackets" />
+                    </div>
+                    <div id="right" title="Nothing to click!" onclick="funk()" oncontextmenu="funk2()" style="text-transform:uppercase;" >
+                        <div id="right_left" >
+                        <h1 id="hi">Jackets</h1>
+                         <dl>
+                             <dt><h2>Size</h2>
+                                <dl>
+                                    <dt><strong>S</strong></dt>
+                                    <dt><strong>M</strong></dt>
+                                    <dt><strong>L</strong></dt>
+                                    <dt><strong>XL</strong></dt>
+                                    <dt><strong>XXL</strong></dt>
+                                </dl>
+                            </dt>
+                         </dl>
+                       </div>
+                        <div id="right_right">
+                                <dl>
+                                    <dt><h2>Color</h2>
+                                        <dl>
+                                            <dt><strong>Red</strong></dt>
+                                            <dt><strong>Pink</strong></dt>
+                                            <dt><strong>Rose</strong></dt>
+                                            <dt><strong>Blue</strong></dt>
+                                            <dt><strong>Green</strong></dt>
+                                        </dl>
+                                    </dt>
+                                </dl>
+                        </div>
+                    </div>
+	        </div>
+                <div id="second_div">
+                    <div class="item_left">
+                        <img src="foto/foto/k5.jpg" title="$20.99"/>
+                        Hooded Packaway Technical Jacket
+                          <p style="padding-left:30px;color:white; font-style: italic;" title="Prise" >$20.99</p>
+                    </div>
+                <div class="item_left">
+                        <img src="foto/foto/k6.jpg" title="$15.99"/>
+                        Shower-resistant Hooded Puffer Jacket
+                          <p style="padding-left:30px;color:white; font-style: italic;" title="Prise" >$15.99</p>
+                </div>
+                <div class="item_left">
+                        <img src="foto/foto/k7.jpg" title="$18.99"/>
+                        Check Lined Diamond Quilted Jacket
+                          <p style="padding-left:30px;color:white; font-style: italic;" title="Prise" >$18.99</p>
+                </div>
+                <div class="item_right">
+                        <img src="foto/foto/k8.jpg" title="$25.99"/>
+                        Quilted Cotton Blend Coat
+                          <p style="padding-left:30px;color:white; font-style: italic;" title="Prise" >$25.99</p>
+                </div>
+
+                </div>
+             <div class="shablloni" style=" -webkit-box-shadow:0 0 .5em rgb(4,6,5);">
+                    <div id="left">
+                        <img id="fotoSh" src="Foto/foto/SWEATERK.jpg" alt="Gjempert per femra " title="Sweaters" />
+                    </div>
+                 <div id="right" title="Nothing to click!" onclick="funk()" oncontextmenu="funk2()" style="text-transform:uppercase;">
+                       <div id="right_left">
+                        <h1 id="hi">Sweaters</h1>
+                         <dl>
+                             <dt><h2>Size</h2>
+                                <dl>
+                                    <dt><strong>S</strong></dt>
+                                    <dt><strong>M</strong></dt>
+                                    <dt><strong>L</strong></dt>
+                                    <dt><strong>XL</strong></dt>
+                                    <dt><strong>XXL</strong></dt>
+                                </dl>
+                            </dt>
+                         </dl>
+                       </div>
+                        <div id="right_right">
+                                <dl>
+                                    <dt><h2>Color</h2>
+                                        <dl>
+                                            <dt><strong>Red</strong></dt>
+                                            <dt><strong>Pink</strong></dt>
+                                            <dt><strong>Rose</strong></dt>
+                                            <dt><strong>Blue</strong></dt>
+                                            <dt><strong>Green</strong></dt>
+                                        </dl>
+                                    </dt>
+                                </dl>
+                        </div>
+                    </div>
+	        </div>
+                <div id="second_div">
+                    <div class="item_left">
+                        <img src="foto/foto/k9.jpg" title="$30.99"/>          
+                        Waffle Knit Cotton Sweater
+                        <p style="padding-left:25px;color:white; font-style: italic;" title="Prise" >$30.99</p>
+                    </div>
+                <div class="item_left">
+                        <img src="foto/foto/k10.jpg" title="$25.99"/>                     
+                        Creature Motif Cotton Jersey Sweatshirt
+                         <p style="padding-left:25px;color:white; font-style: italic;" title="Prise" >$25.99</p>
+                </div>
+                <div class="item_left">
+                        <img src="foto/foto/k11.jpg" title="$20.99"/>
+                        Creature Motif Cotton Jersey Sweatshirt
+                         <p style="padding-left:25px;color:white; font-style: italic;" title="Prise" >$20.99</p>
+                </div>
+                <div class="item_right">
+                        <img src="foto/foto/k12.jpg" title="$30.99"/>
+                        Weather Motif Cotton Sweatshirt
+                         <p style="padding-left:25px;color:white; font-style: italic;" title="Prise" >$30.99</p>
+                </div>
+
+                </div>
+        </div>
+		
+         <footer id="footer">
+             <nav>
+           <hr />
+                   <table align="right" id="footert">
+                       <tr>
+                           <td><a href="https://www.facebook.com/"><img src="foto/fblogo.jpg" title="Facebook"></a></td>
+                           <td><a href="https://twitter.com/"><img src="foto/twlogo.jpg" title="Twitter"></a></td>
+                           <td><a href="https://www.instagram.com"><img src="foto/insta1logo.png" title="Instagram"></a></td>
+                           <td><a href="https://www.google.com/"><img src="foto/gog1logo.png" title="Google"></a></td>
+                           
+                       </tr>
+                   </table><br /><br /><br /><br />
+      
+                   Copyright &copy; 2017 Thanks for comming!  
+        </footer>
+    </body>
+</html>
+

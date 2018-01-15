@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>3D_Transformation</title>
+        <meta charset="windows-1252">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            body {
+                margin:0;
+                padding:0;
+                background-color: #7082d8;
+                
+        
+            }
+            .center {
+                position: absolute;
+                top: 25%;
+                left: 50%;
+                transform: translate(-50%,-50%);
+                
+            }
+            a {
+                font-size: 20px;
+                font-family: arial;
+                text-decoration:none;
+                text-transform: uppercase;
+                transform-style: preserve-3d;
+                position: relative;
+                transition: .5s;
+            }
+            a:before {
+                content: attr(title);
+                position: absolute;
+                top: 0;
+                left: 0;
+                padding:150px 240px;
+                background:  #7082d8;
+                color: #0f142d;
+                border: 3px solid #0f142d;
+                transition: .5s;
+                transform-origin: right;
+                transform: translateX(-100%)rotateY(90deg);
+                
+            }
+            a:after{
+                content: attr(title);
+                position: absolute;
+                top: 0;
+                left: 0;
+                padding:150px 240px;
+                background: #0f142d;
+                color: #7082d8;
+                border: 3px solid #0f142d;
+                transition: .5s;
+                transform-origin: left;
+                transform: translateX(-100%)rotateY(0deg);
+            }
+            a:hover:before {
+                transform: translateX(0)rotateY(0deg);
+            }
+            
+            a:hover:after {
+                transform: translateX(100%)rotateY(90deg);
+            }
+        </style>
+    </head>
+    <body >
+        <div class="center">   
+            <a title="3Dtransform"></a>
+        </div>
+    </body>
+</html>

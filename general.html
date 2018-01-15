@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html manifest="appcache.caching">
+    
+    <head>
+        <title>General</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" type='text/css' href="children.css">
+        <script type="text/javascript" src="general.js" ></script>
+         <script src="jquery-3.2.1.min.js"></script>
+        <script>
+            $(document).ready(function(){
+              $("#welcome").click(function(){
+                   $(this).hide(100);                                           
+                   $(this).show(50);
+                }); 
+              $("#fun").hover(function(){
+                   $(this).slideToggle("fast");
+               });
+              $("#fadeOut").click(function(){
+                   $("#forma1").fadeOut(1000,function(){
+                       alert("These elements are hidden now!");
+                  });
+                  $("#forma2").fadeOut(1000,function(){
+                  });
+              });
+              $("#fadeIn").click(function(){
+                   $("#forma1").fadeIn(500,function(){
+                       alert("You turned them back!");
+                   });
+                   $("#forma2").fadeIn(500);
+                     });
+            });
+        </script>
+        <style>
+            @font-face {
+                 font-family: Fonti2;
+                 src: url(Slabo27px-Regular.ttf);
+            }
+            
+            #headingsdiv{ 
+                 background: url(foto/up.jpg) left top no-repeat, url(foto/down.jpg) right bottom no-repeat;
+                 text-wrap:normal;
+                 font-family: Fonti2;
+                 
+               } 
+            #borderimage{
+                 border: 10px solid transparent;
+                 padding: 15px;
+                 border-image: url(foto/border.png) 30 stretch; 
+        
+                 position :relative;
+                -webkit-animation: mymove 5s infinite;
+            }
+            
+            @-webkit-keyframes mymove {
+                 0%   {top: -50px; left: -20px; background: #FFC0CB;}
+                 25%  {top: -50px; left: 100px; background: #C6E2FF;}
+                 50%  {top: 100px; left: 100px; background: #FFEC8B;}
+                 75%  {top: 100px; left: -20px; background: #CAFF70;}
+                 100% {top: -50px; left: -20px; background: #FFC0CB;}
+
+            }
+            #id{
+                margin-right:70%;
+                position :relative;
+                -webkit-animation: teksti 5s infinite;
+            }
+            @-webkit-keyframes teksti {
+                
+                0%   {top: 0px; left:100px}
+                100% {top:0px ; left: 850px}
+            }
+            #div1, #div2 {
+                float: left;
+                width: 200px;
+                height: 200px;
+                margin-left: 80px;
+                padding: 10px;
+                border: 1px solid black;
+            }
+            #sky{
+                position: absolute;
+            }
+            @font-face {
+                 font-family: Fonti1;
+                 src: url(SansationBold.woff);
+            }
+            #multiple_column{
+                font-family: Fonti1;
+            }
+            #button{
+                background-color: black;
+                color:white;
+               
+            }
+             #ccanvas {
+                border:1px solid #d3d3d3;
+                background-color: #f1f1f1;
+            }
+            #btnloc {
+                border:1px solid #d82424;
+                text-decoration: none;
+                background:#f98686 ;
+                color: #7a0404;
+                padding: 20px;
+                margin-left: 7%;
+            }
+            #btnloc:hover {
+                border:1px solid #7a0404;
+                text-decoration: none;
+                background: #a30101;
+                color: white;
+                padding: 20px;
+                margin-left: 7%;
+                coursor:pointer ;
+            }
+               #Transform3D {
+                border:1px solid #0f142d;
+                text-decoration: none;
+                background: #7082d8;
+                color: #0f142d;
+                padding: 20px;
+                margin-left: 15%;
+                
+            }
+            #Transform3D:hover {
+                border:1px solid #0f142d;
+                text-decoration: none;
+                background: #0f142d;
+                color: #7082d8;
+                padding: 20px;
+                margin-left: 15%;
+                
+            }
+        </style>
+        <script type="text/javascript">
+            function allowDrop(ev) {
+                  ev.preventDefault();
+            }
+
+            function drag(ev) {
+                  ev.dataTransfer.setData("text", ev.target.id);
+            }
+            function drop(ev) {
+                  ev.preventDefault();
+                  var data = ev.dataTransfer.getData("text");
+                  ev.target.appendChild(document.getElementById(data));
+            }
+        </script>
+        <script type="text/javascript">
+  
+ window.onload = function(){
+ var canvas = document.getElementById('sky');
+ var ctx = canvas.getContext('2d');
+ var W =1320;
+ var H =170;
+ canvas.width=W;
+ canvas.height=H;
+ 
+ var max= 120;
+ var flakes = [];
+ 
+ var i =0;
+ while(i<max)
+ {
+   flakes.push({
+               x:Math.random()*W, //per gjeresi
+               y:Math.random()*H, //per lartesi
+               r:Math.random()*5+1, //minimumi 2px ,maksimumi 6px
+               d:Math.random()+1 //densiteti i flakeve
+                
+         }) ;
+         i++;
+ }
+ function drawFlakes()
+ {
+     ctx.clearRect(0,0,W,H);
+     ctx.fillStyle = 'white';
+     ctx.beginPath();
+     for(var i=0 ; i<max ;i++)
+     {
+         var f = flakes[i];
+         ctx.moveTo(f.x,f.y);
+         ctx.arc(f.x,f.y,f.r,0,2*Math.PI,true);
+     }
+     ctx.fill();
+     moveFlakes();
+     
+ }
+  var angle = 0;
+  function moveFlakes()
+  {
+     angle = angle + 0.01;
+     for(var i=0 ; i<max ; i++)
+     {
+         var f=flakes[i];
+         f.y +=Math.pow(f.d,2)+1;
+         f.x +=Math.sin(angle)+2;
+         if(f.y>H)
+         {
+             flakes[i]={x:Math.random()*W, y:0 , r:f.r , d:f.d};
+         }
+     }
+  }
+ setInterval(drawFlakes , 25);
+ 
+ };
+ 
+ 
+
+ </script> 
+</head>
+    <body>
+        <header style="border-top:#666666 dotted 7px;">
+            <div id="firstdiv" align="center">
+                <img src="foto/logo.jpg" width="80" height="80" align="left" id="logo" usemap="#map">
+		<map name="map" >
+                        <area shape="rect" coords="29,21,38,34" alt="New Arrevals" href="menu.html" />
+                        <area shape="rect" coords="41,26,45,33" alt="Man" href="man.html" />
+                        <area shape="rect" coords="49,25,59,34" alt="Woman" href="femra.html" />
+                        <area shape="rect" coords="60,26,63,35" alt="Children" href="children.html" />
+                        <area shape="rect" coords="65,25,71,34" alt="Sport" href="sport.html" />
+                        <area shape="rect" coords="71,33,78,36" alt="General" href="general.html" />
+                </map>		
+                <form style="text-align:right;" name="myForm" onsubmit="javascript:return validateForm('myForm' , 'clothes')" method="get" ><input id="search" type='text' placeholder=" Search..." list="fashion" name="clothes" maxlength="30" autocomplete="on" autofocus  title="Search just for clothes that are in the list,please!" ><datalist id="fashion">
+                    <option value="Woman Dresses"> 
+                    <option value="Woman T-shirts">
+                    <option value="Woman Sweaters">
+                    <option value="Man Pants">
+                    <option value="Man Shirts">
+                    <option value="Man Sweaters">
+                    <option value="Children Dresses">
+                    <option value="Children Jackets">
+                    <option value="Children Sweaters">
+                    <option value="Sport Jacket">
+                    <option value="Sport T-shirt">
+                  </datalist><input id="go" type="submit" formmethod="post" value="Go!"></form> 
+                  <script>
+                       function validateForm(myForm , clothes) {
+                           var reg = /^([A-Za-z\-]){1,}\s([A-Za-z0-9\-]){1,}$/;
+                           var x = document.forms[myForm].elements[clothes].value;
+                           if (reg.test(x) === false ||  x === "") {
+                                alert("Not a valid Search. Try another one!");
+                                document.forms[myForm].elements[clothes].focus;
+                                 document.forms[myForm].elements[clothes].focus();
+                                return false;
+                             }
+                          }
+                 </script>
+                <p id="welcome">Welcome!</p> 
+            </div>
+            <div  id="divoftable" align="center">
+                <table>
+                    <tr>
+                        <td><a href="menu.html">New Arrivals</a></td>
+                        <td><a href="man.html">Men</a></td>
+                        <td><a href="femra.html">Woman</a></td>
+                        <td><a href="children.html">Children</a></td>
+                        <td><a href="sport.html">Sport</a></td>
+                        <td><strong><a href="general.html">General</a></strong></td>
+                    </tr>
+                </table>
+            </div>
+        </header>
+        <div id="fun" style="text-align:center; width:100%;height: 1.5%; background-color:brown; margin:0; border-top: solid 2px;">
+                <pre  style="color:white;">Fun part!</pre>
+            </div>
+           
+        <div>
+            <div style="width:15% ; height: 90px;margin-left: 60px;margin-top: 70px;margin-bottom: 40px;
+                 float:left;perspective: 250px;">
+                <div  id="borderimage">
+                    <div>
+                <strong>Some codes</strong><br />  
+                <code style="">
+                 a = 8;<br>
+                 b = 6;<br>
+                 c = a + b;<br/>
+                 d = a - b;
+                 </code>
+                    </div>
+               </div>
+                <div style="transform: rotateX(5deg);">
+                <audio controls style="margin-top:50px;margin-left:-20px;
+                                       transform: translate(0px,90px);">
+                    <source src="Audio2.mp3" type="audio/mp3"> 
+                </audio>
+                </div>
+                <div style="transform: rotateX(5deg);">
+                <audio controls style="margin-top:20px;margin-left:-20px;
+                                       transform: translate(0px,90px);">
+                    <source src="Audio1.mp3" type="audio/mp3">
+                </audio>
+                </div>
+                </div>
+            <div style="width:30%; height:90px; float: right;margin-top: 20px;margin-left: 100px;">
+                <video width="300" height="220" controls style="margin-left:25px;">
+                    <source src="ClothesVideo.mp4" type="video/mp4" />
+                </video>
+                   <video width="300" height="220" controls style="margin-left:25px;">
+                    <source src="Video2.mp4" type="video/mp4" />
+                </video>
+            </div>
+            <svg id="svg1" style="float:top; margin-left:145px;margin-top: 20px;" width="450" height="415">
+        	<g>
+                <g>
+		<g>
+		<path d="M219.089,118.7c-1.32,0-2.601-0.539-3.54-1.469c-0.93-0.92-1.46-2.211-1.46-3.531c0-1.319,0.53-2.609,1.46-3.539
+				c0.93-0.93,2.22-1.461,3.54-1.461c1.319,0,2.609,0.531,3.53,1.461c0.939,0.939,1.47,2.22,1.47,3.539
+				c0,1.311-0.53,2.601-1.47,3.531C221.688,118.161,220.408,118.7,219.089,118.7z"/>
+		</g>
+		<path d="M394.979,159.654l-51.07-101.172c-1.734-5.758-8.383-14.839-41.633-28.439c-14.847-6.072-29.102-10.62-34.093-12.161
+			c-3.997-6.169-10.186-11.851-18.615-17.121l-0.026,0.009C248.78,0.29,247.887,0,246.918,0H165.26
+			c-0.971,0-1.867,0.285-2.629,0.768l-0.021-0.007c-8.43,5.27-14.618,10.952-18.614,17.12c-4.99,1.542-19.247,6.089-34.095,12.162
+			c-33.251,13.6-39.898,22.682-41.632,28.44l-51.07,101.172c-0.604,1.196-0.702,2.585-0.273,3.855
+			c0.429,1.27,1.35,2.313,2.555,2.897l72.827,35.306v200.055c0,2.115,1.33,4.002,3.322,4.711c1.639,0.583,18.656,5.699,110.452,5.7
+			c0.002,0,0.004,0,0.007,0c0.002,0,0.004,0,0.006,0c91.799-0.001,108.815-5.117,110.454-5.7c1.992-0.709,3.322-2.596,3.322-4.711
+			V201.711l72.826-35.306c1.205-0.585,2.126-1.628,2.555-2.897C395.681,162.239,395.583,160.85,394.979,159.654z M339.492,71.922
+			l36.848,72.996l-56.469,27.625V148.08C319.871,121.419,332.637,87.961,339.492,71.922z M249.408,12.739
+			c10.899,8.131,15.376,16.84,14.028,27.079c-1.465,11.138-7.808,37.162-10.516,48.023l-28.27-7.512L249.408,12.739z
+			 M213.595,81.441l-7.506,10.913l-7.503-10.912L177.827,24.77h56.524L213.595,81.441z M239.762,10l-1.747,4.77h-63.851L172.417,10
+			H239.762z M162.769,12.739l24.759,67.59l-28.271,7.512c-2.708-10.862-9.05-36.884-10.516-48.023
+			C147.394,29.579,151.872,20.87,162.769,12.739z M92.307,190.598l-63.893-30.975l2.916-5.777l60.977,29.83V190.598z
+			 M92.307,172.543l-56.47-27.625l36.85-72.999c6.854,16.03,19.62,49.472,19.62,76.16V172.543z M309.871,148.08v249.674
+			c-8.228,1.426-33.847,4.424-103.782,4.424c-69.934,0-95.554-2.998-103.781-4.424V148.08c0-34.69-19.279-78.04-23.909-87.951
+			c4.825-8.284,32.853-21.082,60.687-30.214c-0.684,3.584-0.77,7.315-0.258,11.207c1.944,14.778,11.563,52.492,11.973,54.091
+			c0.33,1.292,1.163,2.399,2.314,3.075c0.773,0.453,2.419,0.961,3.814,0.52l35.057-9.314l9.098,13.23v40.921c0,2.761,2.238,5,5,5
+			c2.762,0,5-2.239,5-5v-40.903l9.112-13.248l35.056,9.314c0.423,0.111,2.419,0.498,3.813-0.52c1.365-0.997,1.984-1.782,2.315-3.075
+			c0.409-1.599,10.029-39.313,11.973-54.09c0.513-3.893,0.427-7.626-0.258-11.211c27.834,9.129,55.863,21.929,60.686,30.217
+			C329.149,70.039,309.871,113.389,309.871,148.08z M319.871,190.598v-6.922l60.976-29.83l2.916,5.777L319.871,190.598z"/>
+	</g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g>
+       </svg>
+</div>
+        <div style="width:100%;">
+            <canvas id="b" width="200" height="200" style="margin: 30px;background:radial-gradient(yellow,white); transform: rotate(20deg); ">
+          Your browser does not support HTML5 Canvas.
+       </canvas>
+        <script>
+           $(document).ready(function(){
+               $("#b").mouseleave(function(){
+                   alert("You leaved the black emoji!");
+               });
+           });
+       </script>
+       <script>
+           var a_canvas = document.getElementById("b");
+            var context = a_canvas.getContext("2d");
+
+            // Draw the face
+            context.fillStyle = "black";
+            context.beginPath();
+            context.arc(95, 85, 40, 0, 2*Math.PI);
+            context.closePath();
+            context.fill();
+            context.lineWidth = 5;
+            context.stroke();
+            context.fillStyle = "white";
+
+            // Draw the left eye
+            context.beginPath();
+            context.arc(73, 73, 5, 0, 2*Math.PI);
+            context.closePath();
+            context.fill();
+
+            // Draw the right eye
+            context.beginPath();
+            context.arc(117, 73, 5, 0, 2*Math.PI);
+            context.closePath();
+            context.fill();
+
+            // Draw the mouth
+            context.beginPath();
+            context.arc(95, 90, 26, Math.PI, 2*Math.PI, true);
+            context.closePath();
+            context.fill();
+       </script>
+
+          <canvas id="canvas" width="200" height="200" style="background:radial-gradient(yellow,white);margin: 30px;">
+                       </canvas>
+            
+             
+       <script>
+           var a_canvas = document.getElementById("canvas");
+            var context = a_canvas.getContext("2d");
+
+            // Draw the face
+            context.fillStyle = "yellow";
+            context.beginPath();
+            context.arc(95, 85, 40, 0, 2*Math.PI);
+            context.closePath();
+            context.fill();
+           
+            context.stroke();
+            context.fillStyle = "black";
+
+            // Draw the left eye
+            context.beginPath();
+            context.arc(73, 73, 5, 0, 2*Math.PI);
+            context.closePath();
+            context.fill();
+
+            // Draw the right eye
+            context.beginPath();
+            context.arc(117, 73, 5, 0, 2*Math.PI);
+            context.closePath();
+            context.fill();
+
+            // Draw the mouth
+            context.beginPath();
+            context.arc(95, 90, 26, Math.PI, 2*Math.PI, true);
+            context.closePath();
+            context.fill();
+       </script>   
+          
+       
+          <canvas id="c" width="200" height="200" style="background:radial-gradient(yellow,white);margin: 30px;transform: scale(1.3,1.3);">
+                       </canvas>
+       <script>
+           $(document).ready(function(){
+               $("#c").mouseenter(function(){
+                   alert("You entered in the red emoji!");
+               });
+           });
+       </script>
+             
+       <script>
+           var a_canvas = document.getElementById("c");
+            var context = a_canvas.getContext("2d");
+
+            // Draw the face
+            context.fillStyle = "red";
+            context.beginPath();
+            context.arc(95, 85, 40, 0, 2*Math.PI);
+            context.closePath();
+            context.fill();
+            context.lineWidth = 2;
+            context.stroke();
+            context.fillStyle = "black";
+
+            // Draw the left eye
+            context.beginPath();
+            context.arc(73, 73, 5, 0, 2*Math.PI);
+            context.closePath();
+            context.fill();
+           
+            
+
+            // Draw the right eye
+            context.beginPath();
+            context.arc(117, 73, 5, 0, 2*Math.PI);
+            context.closePath();
+            context.fill();
+
+            // Draw the mouth
+            context.beginPath();
+            context.arc(95, 90, 26, Math.PI, 2*Math.PI, true);
+            context.closePath();
+            context.fill();
+       </script>  
+       
+       
+       <canvas style="margin: 30px;background:radial-gradient(yellow,white);" id="canv" width="200" height="200" >
+                       </canvas>
+            
+             
+       <script>
+           var a_canvas = document.getElementById("canv");
+            var context = a_canvas.getContext("2d");
+
+            // Draw the face
+            context.fillStyle = "yellow";
+            context.beginPath();
+            context.arc(95, 85, 40, 0, 2*Math.PI);
+            context.closePath();
+            context.fill();
+            context.lineWidth = 0;
+            context.stroke();
+            context.fillStyle = "black";
+
+            // Draw the left eye
+            context.beginPath();
+            context.arc(73, 73, 5, 0, 2*Math.PI);
+            context.closePath();
+            context.fill();
+
+            // Draw the right eye
+            context.beginPath();
+            context.arc(117, 73, 5, 0, 2*Math.PI);
+            context.closePath();
+            context.fill();
+
+            // Draw the mouth
+            context.beginPath();
+            context.arc(95, 90, 26, Math.PI, 2*Math.PI, true);
+            context.closePath();
+            context.fill();
+       </script>  
+       
+       <canvas style="margin: 30px;background:radial-gradient(yellow,white);transform: rotate(-20deg);" id="ca" width="200" height="200" >
+                       </canvas>
+        <script>
+           $(document).ready(function(){
+               $("#ca").mouseleave(function(){
+                   alert("You leaved the black emoji!");
+               });
+           });
+       </script>
+             
+       <script>
+           var a_canvas = document.getElementById("ca");
+            var context = a_canvas.getContext("2d");
+
+            // Vizatimi i fytyres
+            context.fillStyle = "black";
+            context.beginPath();
+            context.arc(95, 85, 40, 0, 2*Math.PI);
+            context.closePath();
+            context.fill();
+            context.lineWidth = 5;
+            context.stroke();
+            context.fillStyle = "white";
+
+            // Vizatimi i syrit te djathte
+            context.beginPath();
+            context.arc(73, 73, 5, 0, 2*Math.PI);
+            context.closePath();
+            context.fill();
+
+            // Vizatimi i syrit te djathte
+            context.beginPath();
+            context.arc(117, 73, 5, 0, 2*Math.PI);
+            context.closePath();
+            context.fill();
+
+            // Vizatimi i gojes
+            context.beginPath();
+            context.arc(95, 90, 26, Math.PI, 2*Math.PI, true);
+            context.closePath();
+            context.fill();
+            
+
+       </script>  
+    </div>
+        <div>
+              <canvas id="first" width="200" height="50" style="margin:0px 0px 50px 30px; transform: skew(5deg,-6deg); "></canvas>
+              <canvas id="second" width="200" height="50" style="margin:0px 0px 50px 60px; transform: skew(5deg,6deg); "></canvas>
+              <canvas id="third" width="200" height="50" style="margin:0px 0px 50px 50px; transform: skew(5deg,-6deg); "></canvas>
+              <canvas id="fourth" width="200" height="50" style="margin:0px 0px 50px 60px; transform: skew(5deg,6deg); "></canvas>
+              <canvas id="fifth" width="200" height="50" style="margin:0px 0px 50px 60px; transform: skew(5deg,-6deg); "></canvas>
+        </div>
+                    <script>
+                function f1(){
+                var x = document.getElementById('first');
+                var ctx = x.getContext('2d');
+                
+                ctx.font = '15px Areal';
+                ctx.textAlign = 'left';
+                ctx.textBaseline = "bottom"; 
+                ctx.strokeText('This figure is maded by canvas!' ,5,28);
+            }
+           
+            
+            
+            function f2(){
+                var x = document.getElementById('second');
+                var ctx = x.getContext('2d');
+                
+                ctx.font = '15px Areal';
+                ctx.textAlign = 'left';
+                ctx.textBaseline = "bottom"; 
+                ctx.strokeText('This figure is maded by canvas!' ,5,28);
+            }
+                
+            
+            
+            
+            function f3(){
+                var x = document.getElementById('third');
+                var ctx = x.getContext('2d');
+                
+                ctx.font = '15px Areal';
+                ctx.textAlign = 'left';
+                ctx.textBaseline = "bottom"; 
+                ctx.strokeText('This figure is maded by canvas!' ,5,28);
+               
+            }
+            
+            
+            
+            function f4(){
+                var x = document.getElementById('fourth');
+                var ctx = x.getContext('2d');
+                
+                ctx.font = '15px Areal';
+                ctx.textAlign = 'left';
+                ctx.textBaseline = "bottom"; 
+                ctx.strokeText('This figure is maded by canvas!' ,5,28);
+            }
+                
+            
+            
+            
+            function f5(){
+                var x = document.getElementById('fifth');
+                var ctx = x.getContext('2d');
+                
+                ctx.font = '15px Areal';
+                ctx.textAlign = 'left';
+                ctx.textBaseline = "bottom";
+                ctx.strokeText('This figure is maded by canvas!' ,5,28);
+            }
+                
+                f1();
+                f2();
+                f3();
+                f4();
+                f5();
+            </script>
+    <div style="width:100%;height:200px;">
+            <canvas id="canvass" width="200" height="200" style="margin:0 100px 0 0;float:right;"></canvas>
+            
+             <svg width="260" height="200" style="float:left;margin:0 0 0 50px;" >
+               <polygon points="100,10 40,198 190,78 10,78 160,198" style="fill:black;stroke:black;stroke-width:3;fill-rule:evenodd;" />
+            </svg>
+         
+        <div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)">
+               <img src="foto/logo.jpg" draggable="true" ondragstart="drag(event)" id="drag1" width="200" height="200">
+        </div>
+
+        <div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+    </div>
+
+        <div id="headingsdiv" style="width: 100%; font-size: 15px; resize: both;overflow: auto;">
+            <blockquote style=" text-shadow: 1.2px 1.2px black;" id="kindness">
+            <h1><q>
+                Kindness, tolerance, integrity, modesty, generosity - these are attributes that events permit us.
+                They are our holiday moods, and we are as proud of them as of the fine clothes we have hung away to wear on occasions.</q>
+                
+            </h1> 
+        </blockquote>
+            <script>
+                $(document).ready(function(){
+                    $("#kindness").text("Kindness, tolerance, integrity, modesty, generosity - these are attributes that events permit us.They are our holiday moods, and we are as proud of them as of the fine clothes we have hung away to wear on occasions.");
+                    $("#kindness").css("font-size","30px");
+                });
+            </script>
+            <blockquote style=" text-shadow: 1.2px 1.2px black;">
+            <h2><q>
+                    The human soul is hungry for beauty; we seek it everywhere - in landscape, music, art, <mark>clothes</mark>, furniture, gardening, companionship,
+                love, religion, and in ourselves.
+                No one would desire not to be beautiful. When we experience the beautiful, there is a sense of homecoming.</q>
+            </h2>
+        </blockquote>
+        <blockquote style=" text-shadow: 1.2px 1.2px black;">
+            <h3><q>
+                Loving oneself isn't hard, when you understand who and what 'yourself' is. It has nothing to do with the shape of your face, 
+                the size of your eyes, the length of your hair or the quality of your <mark>clothes</mark>.
+                It's so beyond all of those things and it's what gives life to everything about you. Your own self is such a treasure.</h3>
+        </blockquote>
+            <blockquote style=" text-shadow: 1.2px 1.2px black;transform: translate3d(180deg,18odeg,2deg)">
+             <h4>
+                     My style is understated because everything I <mark>wear</mark>, I want it to have an effortless feel to it. 
+                     I always want to be comfortable in my <mark>clothes</mark> and feel like myself, but I like to usually throw in some edge in there somewhere, 
+                     even just with a <mark>leather jacket</mark>. But overall, always gotta keep it classy!
+</h4>
+        </blockquote>
+         <blockquote id="h55">
+             <h5 style="transform: rotateY(150deg);transform: rotateZ(-2deg);"><q>
+                I am a collection of thoughts and memories and likes and dislikes. I am the things that have happened to me and the sum of everything 
+                I've ever done. I am the <mark>clothes</mark> I wear on my back. I am every place and every person and every object I have ever come across. 
+                I am a <mark>bag</mark> of bones stuck to a very large rock spinning a thousand miles an hour.
+</h5>
+        </blockquote>
+         <blockquote id="h66">
+             <h6 style="text-wrap:unrestricted;transform: rotateX(360deg);transform: rotateZ(-2deg);" ><q >
+               We are, at almost every point of our day, immersed in cultural diversity: 
+               faces, <mark>clothes</mark>, smells, attitudes, values, traditions, behaviours, beliefs, rituals</q></h6>
+        </blockquote>
+        </div><br /><br />
+        <script>
+                    $(document).ready(function(){
+                        $("#h66").click(function(){
+                            alert($("#h66").text());
+                        });
+                        $("#h55").click(function(){
+                            alert($("#h55").html());
+                        });
+                    });
+                </script>
+        <div style="display: inline;">
+            <div>
+        <form id="forma1" oninput="x.value=parseInt(a.value)+parseInt(b.value)" style="float:left;margin-left:80px;">0
+               <input type="range" id="a" value="0" min="0" max="100" step="5">100
+               + 0<input type="range" id="b" value="0" min="0" max="100" step="1">100
+               = <output id="x" for="a b"></output>
+        </form>
+            
+            <form id="forma2" style="float:right;height: 27px;">
+            <input type="text" id="teksti" style="height:23px;" ><input type="submit" id="button" onclick="try_catch()" style="height:30px;margin-right:100px;">
+        </form>
+            </div>
+            <script>
+                $(document).ready(function(){
+                    $("#teksti").focus(function(){
+                        $(this).css("background-color", "#9dad9b");
+                    });
+                    $("#teksti").blur(function(){
+                        $(this).css("background-color", "white");
+                    });
+                });
+            </script>
+            <br /><br />
+            <div style="width:99%;text-align: center;">
+                <button id="fadeIn" onclick="clickCounter()" style="color:white;background-color: black;">Fade In!</button>
+                <button id="fadeOut" onclick="clickCounter2()" style="color:white;background-color: black;">Fade Out!</button>
+                <div id="r1"></div>
+                 <div id="r2"></div><br />
+                 <button onclick="startWorker()" style="background-color:black;color:white;">Start Count</button> 
+                  <button onclick="stopWorker()" style="background-color:black;color:white;">Stop Count</button>
+                  <p><output id="re"></output></p>
+                  <script>
+                     var w;
+                     function startWorker() {
+                      if(typeof(Worker) == "undefined"){
+                          if(typeof(w) == "undefined") {
+                          w = new Worker("demo_workers.js");
+                        }
+                           w.onmessage = function(event) {
+                          document.getElementById("re").innerHTML = event.data;
+                   };
+                     }else {
+                       document.getElementById("re").innerHTML = "Sorry! No Web Worker support.";
+                   }
+              }
+            function stopWorker() { 
+                    w.terminate();
+                    w = undefined;
+                     }
+                  </script>
+                <script>
+                        function clickCounter() {
+                        if(typeof(Storage) !== "undefined") {
+                        if (sessionStorage.clickcount) {
+                            sessionStorage.clickcount = Number(sessionStorage.clickcount)+1;
+                            } else {
+                                    sessionStorage.clickcount = 1;
+                                   }
+                                   document.getElementById("r1").innerHTML = "You have clicked the FADE IN! button " + sessionStorage.clickcount + " time(s)";
+                        } else {
+                        document.getElementById("r1").innerHTML = "Sorry, your browser does not support web storage";
+                          }
+                        }
+                </script>
+                <script>
+                       function clickCounter2() {
+                       if(typeof(Storage) !== "undefined") {
+                           if (localStorage.clickcount) {
+                               localStorage.clickcount = Number(localStorage.clickcount)+1;
+                            } else {
+                            localStorage.clickcount = 1;
+                            }
+                            document.getElementById("r2").innerHTML = "You have clicked the FADE OUT! button " + localStorage.clickcount + " time(s).";
+                       } else {
+                       document.getElementById("r2").innerHTML = "Sorry, your browser does not support web storage";
+                       }
+                      }
+              </script>
+            </div>
+            <br /><br />
+            <div style="height: 70px;width:1330px;position:absolute;margin-left: 10px;background-color:whitesmoke;border: dotted black 1px;">
+            <div id="animate_div" style="height: 70px;width:70px;position:absolute;margin-left: 0px;background-color: black;">
+            </div>
+            </div>
+            <br /><br /><br /><br />
+            <button id="move_left" style="margin-left:20px;margin-top:5px;background-color: black;color:white;" onclick="replace();">Move!</button>
+            <button id="move_right" style="text-align: right ;float:right ;margin-right: 20px;margin-top:5px;background-color: black;color:white;" onclick="match();">Click!</button>
+           <script>
+               function match(){
+                  var merr = "Loving oneself isn't hard, when you understand who and what yourself is. It has nothing to do with the shape of your face,the size of your eyes, the length of your hair or the quality of your clothes."; 
+                  var match= merr.match(/the/g);
+                  var match2= merr.match(/and/i);
+                             
+                  var a = "Loving oneself isn't hard, when you understand who and what yourself is.";
+                  var b = new RegExp("y");
+                  var c = b.exec(a);
+                  alert("The word \"the\" in the text : \"Loving oneself isn't hard, when you understand who and what yourself is. It has nothing to do with the shape of your face,the size of your eyes, the length of your hair or the quality of your clothes.\" is used :        " + match + 
+                          "         times , and the word \"and\" is used :      " +match2 + "       times.\n" + "The first letter \"y\" in the text \"Loving oneself isn't hard, when you understand who and what yourself is.\" is shown in the next line : \n" + c);
+                }
+           </script>
+           <script>
+                $(document).ready(function(){
+                   $("#move_left").click(function(){
+                                $("#animate_div").animate({height: '70px', opacity: '0.4'}, 1000);
+                                $("#animate_div").animate({width: '1330px', opacity: '1'}, "fast");
+                                $("#animate_div").animate({height: '70px', opacity: '0.4'}, 1000);
+                                $("#animate_div").animate({width: '70px', opacity: '1'}, 3000);
+                   }); 
+                });
+                
+            </script>
+          
+            <br /><br />
+    </div>
+        <script>
+            function try_catch(){
+             var message, x;
+    message = document.getElementById("button");
+    message.innerHTML = "";
+    x = document.getElementById("teksti").value;
+    try { 
+        if(x === "")  throw "Input is empty!";
+        else if(isNaN(x)) throw "Input is not a number!";
+        x = Number(x);
+        if(x > 100)   throw "Input is too high!";
+        else if(x < 5 )    throw "Input is too low!";
+        else throw "Right number.";     
+    }
+    catch(err) {
+        window.alert(err);
+    }
+            }
+        </script>
+        <div style="height: 250px;margin-top: 80px;">
+        <div style=" border: 10px solid transparent; padding: 15px;  border-image: url(foto/border.png) 30 ;width:300px;margin-left: 65px;margin-top: 20px; ">
+        <p id="obj1"></p>
+        <p id="obj2"></p>
+        <p id="obj3"></p>
+        <p id="obj4"></p>
+        </div>
+            <script>
+               function Shuma(first, second,third,fourth) {
+                        this.first = first;
+                        this.second =second;
+                        this.third = third;
+                        this.fourth = fourth;
+                        this.sum = first+second+third+fourth;
+                    }
+
+                var v1 = new Shuma(2, 4, 50,22);
+                var v2 = new Shuma(2, 34,48,12);
+                var v3 = new Shuma(1, 2,3,4);
+                var v4 = new Shuma(6, 30,11,12);
+               document.getElementById("obj1").innerHTML =
+                 "The sum of numbers : " + v1.first + ", " + v1.second + ", " + v1.third + " and " + v1.fourth + " is :" +v1.sum; 
+               document.getElementById("obj2").innerHTML =
+                 "The sum of numbers : " + v2.first + ", " + v2.second + ", " + v2.third + " and " + v2.fourth + " is :" +v2.sum; 
+               document.getElementById("obj3").innerHTML =
+                 "The sum of numbers : " + v3.first + ", " + v3.second + ", " + v3.third + " and " + v3.fourth + " is :" +v3.sum;
+               document.getElementById("obj4").innerHTML =
+                 "The sum of numbers : " + v4.first + ", " + v4.second + ", " + v4.third + " and " + v4.fourth + " is :" +v4.sum;
+         
+       </script>
+     
+       <div style=" border: 10px solid transparent; padding: 15px; padding-bottom:30px; height:200px; border-image: url(foto/border.png) 30 ;width:320px;margin-left: 470px;margin-top: -230px;font-size:14px; ">
+              <p id="obj5"></p>
+              <p id="obj6"></p>
+              <p id="obj7"></p>
+              <p id="obj8"></p>
+              <p id="obj13"></p>
+              <p id="obj14"></p>
+              <p id="obj15"></p>
+          </div>
+       <script>
+               document.getElementById("obj5").innerHTML = " The largest number is : " +  Number.MAX_VALUE;
+               document.getElementById("obj6").innerHTML = " Is the word \"Hello\" not a number(NaN)?  " +  isNaN('Hello');
+               var x = 5;
+               var y = x.toExponential();
+               document.getElementById("obj7").innerHTML = "The number " + x + " in exponencial form is : " + y;
+               document.getElementById("obj8").innerHTML = "the number " + x + " converted to string is : " + x.toString(2);
+               document.getElementById("obj13").innerHTML = "The constant E has the value : " + Math.E;
+               document.getElementById("obj14").innerHTML = "The sqrt of number 2 is : " + Math.SQRT2;
+               document.getElementById("obj15").innerHTML = "The sqft of 1/2 is : " + Math.SQRT1_2;
+       </script>
+       <div style=" border: 10px solid transparent; padding: 15px;  border-image: url(foto/border.png) 30 ;width:320px;margin-left: 900px;margin-top: -233px;">
+           <p id="obj9"></p>
+           <p id="obj10"></p>
+           <p id="obj11"></p>
+           <p id="obj12"></p>
+       </div>
+       <script>
+           function prodhimi(first, second) {
+                        this.first = first;
+                        this.second =second;
+                        this.prodhimii = first*second;
+                    }
+
+                var v9 = new prodhimi(3,40);
+                var v10 = new prodhimi(2,12);
+               
+               document.getElementById("obj9").innerHTML =
+                 "The multiple of numbers : " + v9.first + " and " + v9.second + " is :" +v9.prodhimii; 
+               document.getElementById("obj10").innerHTML =
+                 "The multiple of numbers : " + v10.first + " and " + v10.second + " is :" +v10.prodhimii;  
+               
+            function zbritja(first , second){
+                this.first = first;
+                this.second = second;
+                this.zbritjaa = first - second;
+            }  
+            
+            var v11 = new zbritja(4 , 3);
+            var v12 = new zbritja(12,2);
+            
+             document.getElementById("obj11").innerHTML =
+                 "The substraction between : " + v11.first + " and " + v11.second + " is :" +v11.zbritjaa;  
+             document.getElementById("obj12").innerHTML =
+                 "The substraction between : " + v12.first + " and " + v12.second + " is :" +v12.zbritjaa;  
+               
+       </script>
+      </div>
+        <div style="margin-top:40px;">
+           
+ <div id="div1" style="height:50px;width:50px;border:1px solid black;background-color:blue;margin-left: 110px;color:white">
+</div>
+<div id="div1" style="height:50px;width:50px;border:1px solid black;background-color:yellow;color:blue">
+</div>
+<div id="div1" style="height:50px;width:50px;border:1px solid black;background-color:green;color:white">
+</div>
+         <div id="div1" style="height:50px;width:50px;border:1px solid black;background-color:red;color:white">
+</div>
+         <div id="div2" style="height:50px;width:50px;border:1px solid black;background-color:pink;color:white">
+</div>
+         <div id="div2" style="height:50px;width:50px;border:1px solid black;background-color:brown;color:white">
+</div>
+         <div id="div2" style="height:50px;width:50px;border:1px solid black;background-color:black;color:white">
+</div>
+         <div id="div2" style="height:50px;width:50px;border:1px solid black;background-color:gold;color:blue">
+</div>
+     <button id="butoni" style="background-color:black;color:white;margin-right: 1280px;">Remove</button>
+     <button id="game" style="background-color:black;color:white;float: right;margin-right: 10px;"><a href="game.html" style="text-decoration:none;color:white;">Game</a></button>
+   </div>
+<script>
+$(document).ready(function(){
+    $("#butoni").click(function(){
+        $("#div1").remove(); 
+        $("#div2").remove();
+        $("#div1").prepend("Bye!");
+        $("#div2").append("Bye!");
+    });
+});
+</script>
+            <a id="Transform3D" href="Transform3D.html" >Kliko këtu për të shikuar 3D transform </a>
+            <button id="btnloc" onclick="lokacioni()">Geolocation</button> <p id="geolocation"></p>
+           <script>
+                 document.getElementById("geolocation").innerHTML = "Latitude: " + latitude + "<br>Longitude: " + longitude;
+          function lokacioni(){
+            if (navigator.geolocation){
+            navigator.geolocation.getCurrentPosition(shfaqPoziten);
+            }
+            else {
+               // geolocation is not supported in this browser
+ 
+            }
+          }
+          function shfaqPoziten(position){
+              var latitude = position.coords.latitude;
+              var longitude = position.coords.longitude;
+          }
+            </script>
+               <br /><br /><br /><br />
+                  <canvas id="sky"></canvas>
+        <div id="id">What's the origin of the phrase 'Power dressing'?</div><br />
+          <script>
+                  function replace(){
+                        var merr = document.getElementById("id").innerHTML; 
+                        var zevendeso = merr.replace("What\'s" , "What is");
+                        document.getElementById("id").innerHTML = zevendeso;
+                }
+          </script>
+
+             <div id="multiple_column" style="margin:0px 20px; -webkit-column-count: 5; -webkit-column-gap: 40px; -webkit-column-rule-style: solid;
+                                               -webkit-column-rule-width: 1px;-webkit-column-rule-color: lightblue; background-color: whitesmoke">
+               This term has been used since the late 1970s and reflected the clothing styles favoured in
+                business and politics in the US and UK throughout the 1980s. The style was heavily influenced by influential women who 
+                were in the news at the time, for example, the cast of the television shows Dynasty and Dallas, the UK Prime Minister 
+                Margaret Thatcher and the Princess of Wales. Men also had form of 'power dressing' too but this was less distinctive and 
+                innovative and often manifested itself in little more than an unusually expensive business suit.
+                The term 'power dressing' is first recorded in the New York paper The Post-Standard, September 1979:
+                "The accent has shifted to glamour and power dressing for the city rather than the casual look of past seasons."
+                The style itself leaned towards a somewhat masculine shape and frequently included a tailored jacket, almost always 
+                complete with shoulder pads. The clothes were often made from silk or other expensive materials and their high cost 
+                emphasized the elite status of the women wearing them.
+            </div>
+        <footer id="footer">
+               <nav>
+           <hr />
+                   <table align="right" id="footert">
+                       <tr>
+                           <td><a href="https://www.facebook.com/"><img src="foto/fblogo.jpg" title="Facebook"></a></td>
+                           <td><a href="https://twitter.com/"><img src="foto/twlogo.jpg" title="Twitter"></a></td>
+                           <td><a href="https://www.instagram.com"><img src="foto/insta1logo.png" title="Instagram"></a></td>
+                           <td><a href="https://www.google.com/"><img src="foto/gog1logo.png" title="Google"></a></td>
+                           <td><address><a href="mailto:clirimkastrati7@gmail.com"><img src="foto/email_32.png" title="Email"></a></address></td>
+                       </tr>
+                   </table><br /><br /><br /><br />
+          Copyright &copy; 2017 Thanks for comming!    
+             </nav> 
+           <script type="text/javascript" src="general.js"> </script>
+        </footer>  
+    </body>
+</html>
+
+
+

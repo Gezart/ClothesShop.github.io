@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Clothes Shop</title>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" type='text/css' href="menu.css">
+        <script src="menu.js"></script>
+         <script src="jquery-3.2.1.min.js"></script>
+        <script>
+            $(document).ready(function(){
+               $("#welcome").click(function(){
+                   $(this).hide(100);
+                   $(this).show(50);
+                }); 
+              $("#fun").hover(function(){
+                   $(this).slideToggle("fast");
+               });
+            });
+        </script>  
+    </head>
+    <body>
+        <header  style="border-top:#666666 dotted 7px;">
+		
+            <div id="firstdiv" align="center">
+                <img src="foto/logo.jpg" width="80" height="80" align="left" id="logo" usemap="#map">
+		<map name="map">
+                        <area shape="rect" coords="29,21,38,34" alt="New Arrevals" href="menu.html" />
+                        <area shape="rect" coords="41,26,45,33" alt="Man" href="man.html" />
+                        <area shape="rect" coords="49,25,59,34" alt="Woman" href="femra.html" />
+                        <area shape="rect" coords="60,26,63,35" alt="Children" href="children.html" />
+                        <area shape="rect" coords="65,25,71,34" alt="Sport" href="sport.html" />
+                        <area shape="rect" coords="71,33,78,36" alt="General" href="general.html" />
+</map>			
+            <form style="text-align:right;" name="myForm" onsubmit="javascript:return validateForm('myForm' , 'clothes')" method="get" ><input id="search" type='text' placeholder=" Search..." list="fashion" name="clothes" maxlength="30" autocomplete="on" autofocus  title="Search just for clothes that are in the list,please!" ><datalist id="fashion">
+                    <option value="Woman Dresses"> 
+                    <option value="Woman T-shirts">
+                    <option value="Woman Sweaters">
+                    <option value="Man Pants">
+                    <option value="Man Shirts">
+                    <option value="Man Sweaters">
+                    <option value="Children Dresses">
+                    <option value="Children Jackets">
+                    <option value="Children Sweaters">
+                    <option value="Sport Jacket">
+                    <option value="Sport T-shirt">
+                  </datalist><input id="go" type="submit" formmethod="post" value="Go!"></form> 
+                 <script>
+                       function validateForm(myForm , clothes) {
+                           var reg = /^([A-Za-z\-]){1,}\s([A-Za-z0-9\-]){1,}$/;
+                           var x = document.forms[myForm].elements[clothes].value;
+                           if (reg.test(x) === false ||  x === "") {
+                                alert("Not a valid Search. Try another one!");
+                                document.forms[myForm].elements[clothes].focus;
+                                 document.forms[myForm].elements[clothes].focus();
+                                return false;
+                             }
+                          }
+                 </script>
+                <p id="welcome">Welcome!</p> 
+         
+            </div>
+            <div  id="divoftable" align="center">
+                <table>
+                    <tr>
+                        <td><strong><a href="menu.html">New Arrivals</a></strong></td>
+                        <td><a href="man.html">Men</a></td>
+                        <td><a href="femra.html">Woman</a></td>
+                        <td><a href="children.html">Children</a></td>
+                        <td><a href="sport.html">Sport</a></td>
+                        <td><a href="general.html">General</a></td>
+                    </tr>
+                </table>
+            </div>
+        </header>
+          <div id="fun" style="text-align:center; width:100%;height: 1.5%; background-color:#e20b0b; margin:0; border-top: solid 2px;">
+                <pre style="paddding-top:100px;color:white;">Life is too short to wear boring clothes!</pre>
+            </div>
+		<div id="format">		
+		
+			<div id="login"><a id="a_format" href="login.html" >Log In</a></div> <br>
+			<div id="signup"><a id="a_format" href="signup.html" >Sign Up</a></div> <br>
+			<div id="chat"><a id="a_format" href="chat.html" >Chat</a></div> <br>
+			
+	</div>
+	<div id="divMarquee"> 
+            <article>
+            <section>
+		<marquee  behavior="alternate" direction="left" scrollamount="3"  onmouseover="this.stop();" onmouseout="this.start();" style="-webkit-box-shadow:0 0 .5em rgb(4,6,5);">
+
+			<a href="FotoG/1.jpg" target="_blank"><img id="foto" src="FotoG/1.jpg" alt="Gjemper i gjelber per vajza" title="$20.00" /> 	
+			<a href="FotoG/2.png" target="_blank"><img id="foto" src="FotoG/2.png" title="$33.99" /></a>
+			<a href="FotoG/3.png" target="_blank"><img id="foto" src="FotoG/3.png" title="$35.99" /></a>
+			<a href="FotoG/4.png" target="_blank"><img id="foto" src="FotoG/4.png" title="$23.99" /></a>
+			<a href="FotoG/5.jpg" target="_blank"><img id="foto" src="FotoG/5.jpg" title="$16.99" /></a>
+			<a href="FotoG/6.jpg" target="_blank"><img id="foto" src="FotoG/6.jpg" title="$13.99" /></a>
+			<a href="FotoG/7.png" target="_blank"><img id="foto" src="FotoG/7.png" title="$29.99" /></a>
+                        
+		</marquee>
+            </section>
+                </article>
+            <article>
+            
+		<table id="t02" cellspacing="15" cellpadding="10">
+		<tr id="tr02">
+			<td id="td02">
+                            
+                                <a href="FotoG/1a.jpg" target="_blank"><img src="FotoG/1a.jpg" title="$20.99"/></a>
+                                <figure>
+                                <figcaption>$20.99 </figcaption>
+                                </figure>
+				
+			</td>
+			<td id="td02" >
+                            
+				<a href="FotoG/2a.jpg" target="_blank"><img src="FotoG/2a.jpg" title="$15.99" /></a>
+                                <figure>
+				<figcaption>$15.99</figcaption>
+                                </figure>
+			</td> 
+			<td id="td02">
+                           
+			        <a href="FotoG/3a.png" target="_blank"><img src="FotoG/3a.png" title="$35.99" /></a>
+                                <figure>
+			        <figcaption>$35.99</figcaption>
+                                </figure>
+                                        
+			</td>
+			<td id="td02">
+                           
+				<a href="FotoG/2b.jpg" target="_blank"><img src="FotoG/2b.jpg" title="$12.99" /></a>
+                                <figure>
+				<figcaption>$12.99</figcaption>
+                                </figure>
+			</td>
+		</tr>
+		<tr id="tr02">
+			<td id="td02">
+                           
+				<a href="FotoG/4a.png" target="_blank"><img src="FotoG/4a.png" title="$23.99" /></a>
+                                <figure>
+				<figcaption>$23.99</figcaption>
+                                </figure>
+			</td> 
+			<td id="td02">
+                            
+				<a href="FotoG/5a.jpg" target="_blank"><img src="FotoG/5a.jpg" title="$16.99" /></a>
+                                <figure>
+				<figcaption>$16.00</figcaption>
+                                </figure>
+			</td>
+			<td id="td02">
+                            
+				<a href="FotoG/6a.jpg" target="_blank"><img src="FotoG/6a.jpg" title="$13.99" /></a>
+                                <figure>
+				<figcaption>$13.99</figcaption>
+                                </figure>
+			</td>
+			<td id="td02">
+                           
+				<a href="FotoG/1b.jpg" target="_blank"><img src="FotoG/1b.jpg" title="$19.99" /></a>
+                                <figure>
+				<figcaption>$19.99</figcaption>
+                                </figure>
+			</td>
+		</tr>
+		<tr id="tr02">
+			<td id="td02">
+                           
+				<a href="FotoG/7a.jpg" target="_blank"><img src="FotoG/7a.jpg" title="$26.99" /></a>
+                                <figure>
+				<figcaption>$26.99</figcaption>
+                                </figure>
+			</td>
+                        <td id="td02">
+                           
+					<a href="FotoG/8.jpg" target="_blank"><img src="FotoG/8.jpg" title="$10.99" /></a>
+                                        <figure>
+                                        <figcaption>$10.99</figcaption>
+                                        </figure>
+			</td>
+			<td id="td02">
+                           
+					<a href="FotoG/9.jpg" target="_blank"><img src="FotoG/9.jpg" title="$39.99" /></a>
+                                        <figure>
+					<figcaption>$39.99</figcaption>
+                                        </figure>
+			</td>
+                        <td id="td02">
+                            
+					<a href="FotoG/4b.jpg" target="_blank"><img src="FotoG/4b.jpg" title="$34.99" /></a>
+                                        <figure>
+                                        <figcaption>$34.99</figcaption>
+                                        </figure>
+			</td>
+		</tr>
+		<tr id="tr02">
+			<td id="td02">
+                           
+					<a href="FotoG/10.jpg" target="_blank"><img src="FotoG/10.jpg" title="$6.99" /></a>
+                                        <figure>
+					<figcaption>$6.99</figcaption>
+                                        </figure>
+			</td>
+			<td id="td02">
+                           
+					<a href="FotoG/11.jpg" target="_blank"><img src="FotoG/11.jpg" title="$49.99" /></a>
+                                        <figure>
+					<figcaption>$49.99</figcaption>
+                                        </figure>
+			</td>
+			<td id="td02">
+                            
+					<a href="FotoG/12.jpg" target="_blank"><img src="FotoG/12.jpg" title="$11.99" /></a>
+                                        <figure>
+					<figcaption>$11.99</figcaption>
+                                        </figure>
+			</td>
+			<td id="td02">
+                           
+					<a href="FotoG/3b.jpg" target="_blank"><img src="FotoG/3b.jpg" title="$8.99" /></a>
+                                        <figure>
+					<figcaption>$8.99</figcaption>
+                                        </figure>
+			</td>
+		</tr>
+		
+	</table>
+            </article>
+	<br /> <br /> <br />
+		<hr id="footer_hr" />
+         <footer id="footer">
+            
+           
+                   <table align="right " id="footert">
+                       <tr>
+                           <td><a href="https://www.facebook.com/"><img src="foto/fblogo.jpg" title="Facebook"></a></td>
+                           <td><a href="https://twitter.com/"><img src="foto/twlogo.jpg" title="Twitter"></a></td>
+                           <td><a href="https://www.instagram.com"><img src="foto/insta1logo.png" title="Instagram"></a></td>
+                           <td><a href="https://www.google.com/"><img src="foto/gog1logo.png" title="Google"></a></td>
+                           
+                       </tr>
+                       
+                   </table>
+
+				   
+				   <br /><br /><br /><br />
+          Copyright &copy; 2017 Thanks for comming!    
+        </footer>
+    </body>
+</html>
